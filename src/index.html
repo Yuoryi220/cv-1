@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>会动的代码和八卦图</title>
+</head>
+
+<body>
+
+    <div id="html"></div>
+    <style id="style"></style>
+    <div id="div1Wrapper">
+        <div id="div1"></div>
+    </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /*非常重要别忘记加*/
+        
+        #html {
+            word-break: break-all;
+            /*自动换行,没有左右滚动条 */
+        }
+        
+        #div1 {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        #div1::before {
+            position: absolute;
+            /*重要，在叠加div的时候不能忘记加position：absolute*/
+            content: '';
+            display: block;
+            border: 1px solid red;
+            border: none;
+        }
+        
+        #div1::after {
+            position: absolute;
+            content: '';
+            display: block;
+            border: 1px solid green;
+            border: none;
+        }
+        
+        @media(max-width:500px) {
+            /*媒体查询，为了适配手机，让div1和html的位置重新调换，让html在上，div1的位置在下*/
+            #html {
+                height: 50vh;
+                overflow: auto;
+                /*让html内容在上面*/
+            }
+            #div1Wrapper {
+                height: 50vh;
+            }
+            #div1 {
+                position: relative;
+                /*让div1还原成能滚动的样子*/
+                top: 0;
+                right: 0;
+            }
+        }
+    </style>
+    <script src="main.js"></script>
+</body>
+
+</html>
